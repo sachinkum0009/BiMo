@@ -1,0 +1,12 @@
+[project]
+name = "bimo"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.3.3",
+    "pytest>=8.4.2",
+    "ruff>=0.13.2",
+    "yourdfpy>=0.0.58",
+]
