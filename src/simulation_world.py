@@ -53,7 +53,7 @@ class SimulationWorld:
         return cube
     
     def add_robot(self, name: str, usd_path: Path, position: np.ndarray, orientation: np.ndarray, 
-                  phase_offset: float = 0.0) -> Robot:
+                  phase_offset: float = 0.0) -> bool:
         """
         Add a robot to the simulation.
         
@@ -77,7 +77,7 @@ class SimulationWorld:
             phase_offset=phase_offset
         )
         self.robots.append(robot)
-        return robot
+        return True
     
     def initialize_simulation(self):
         """Initialize the simulation and all robots."""
@@ -92,18 +92,18 @@ class SimulationWorld:
         Args:
             slowdown_factor: Factor to slow down robot animations
         """
-        frame = 0
+        # frame = 0
         
         while True:
             # Step the simulation
             self.world.step(render=True)
             
-            # Capture and save images
-            if self.camera_manager:
-                self.camera_manager.capture_and_save_images(frame)
+            # # Capture and save images
+            # if self.camera_manager:
+            #     self.camera_manager.capture_and_save_images(frame)
             
-            # Animate all robots
-            for robot in self.robots:
-                robot.animate(frame, slowdown_factor)
+            # # Animate all robots
+            # for robot in self.robots:
+            #     robot.animate(frame, slowdown_factor)
             
-            frame += 1
+            # frame += 1
