@@ -62,31 +62,31 @@ def main():
     #     phase_offset=0.0
     # )
 
-    franka = Robot.MANIPULATOR_ROBOT.FRANKA_ROS2
+    # franka = Robot.MANIPULATOR_ROBOT.FRANKA_ROS2
 
-    res = sim_world.add_robot(
-        name="franka",
-        usd_path=franka,
-        position=Position(0.0, 0.0, 0.5).to_numpy(),
-        orientation=Orientation.identity().to_numpy(),  # No rotation
-        phase_offset=np.pi / 2,  # 90 degrees phase offset
-    )
-
-    if not res:
-        print("Failed to add robot franka")
-        return
-    
-    # carter = Robot.MOBILE_ROBOT.NOVA_CARTER
     # res = sim_world.add_robot(
-    #     name="carter",
-    #     usd_path=carter,
-    #     position=Position(1.5, 0.0, 0.0).to_numpy(),
-    #     orientation=Orientation.from_quaternion(np.array([0.7071, 0.0, 0.0, 0.7071])).to_numpy(),  # 90 degrees around x-axis
-    #     phase_offset=0.0
+    #     name="franka",
+    #     usd_path=franka,
+    #     position=Position(0.0, 0.0, 0.5).to_numpy(),
+    #     orientation=Orientation.identity().to_numpy(),  # No rotation
+    #     phase_offset=np.pi / 2,  # 90 degrees phase offset
     # )
+
     # if not res:
-    #     print("Failed to add robot carter")
+    #     print("Failed to add robot franka")
     #     return
+    
+    carter = Robot.MOBILE_ROBOT.NOVA_CARTER
+    res = sim_world.add_robot(
+        name="Nova_Carter_ROS",
+        usd_path=carter,
+        position=Position(1.5, 0.0, 0.0).to_numpy(),
+        orientation=Orientation.from_quaternion(np.array([0.7071, 0.0, 0.0, 0.7071])).to_numpy(),  # 90 degrees around x-axis
+        phase_offset=0.0
+    )
+    if not res:
+        print("Failed to add robot carter")
+        return
 
     # Initialize and run simulation
     sim_world.initialize_simulation()
