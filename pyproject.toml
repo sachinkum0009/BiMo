@@ -9,4 +9,5 @@ dependencies = [
     "pytest>=8.4.2",
     "ruff>=0.13.2",
     "yourdfpy>=0.0.58",
+    "transforms3d>=0.4.2"
 ]

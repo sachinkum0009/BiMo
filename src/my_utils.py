@@ -8,7 +8,8 @@ Utility functions for data processing and analysis.
 from dataclasses import dataclass
 from enum import Enum
 import numpy as np
-from tf_transformations import quaternion_from_euler, euler_from_quaternion
+#from tf_transformations import quaternion_from_euler, euler_from_quaternion
+from transforms3d.euler import euler2quat, quat2euler
 
 class Color(Enum):
     # Use simple tuples as Enum values to avoid ambiguous truth-value
@@ -76,7 +77,7 @@ class Orientation:
             np.ndarray: Quaternion in [w, x, y, z] format (scalar-first)
         """
         # tf_transformations.quaternion_from_euler returns [x, y, z, w] (scalar-last)
-        quat = quaternion_from_euler(self.roll, self.pitch, self.yaw)
+        quat = euler2quat(self.roll, self.pitch, self.yaw)
         # Convert to [w, x, y, z] format (scalar-first) as commonly used in robotics
         return np.array([quat[3], quat[0], quat[1], quat[2]], dtype=float)
 
@@ -112,7 +113,7 @@ class Orientation:
         """
         # Convert from [w, x, y, z] to [x, y, z, w] for tf_transformations
         quat_tf = [quaternion[1], quaternion[2], quaternion[3], quaternion[0]]
-        roll, pitch, yaw = euler_from_quaternion(quat_tf)
+        roll, pitch, yaw = quat2euler(quat_tf)
         return cls(roll=roll, pitch=pitch, yaw=yaw)
 
     @classmethod
