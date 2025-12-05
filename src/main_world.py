@@ -37,9 +37,9 @@ def main():
     """Main function to set up and run the simulation."""
 
     # world_usd_path = Path("/home/asus/backup/zzzzz/isaac/revel_hackathon/turtlebot3_ros.usd")
-    world_usd_path = Environment.INDOOR.HOSPITAL
+    world_usd_path = Environment.OUTDOOR.GREENHOUSE
     # Create simulation world
-    sim_world = SimulationWorld(load_ground_plane=False, world_usd_path=world_usd_path)
+    sim_world = SimulationWorld(load_ground_plane=True, world_usd_path=world_usd_path)
 
     # add cube
     # sim_world.add_cube(
@@ -80,19 +80,19 @@ def main():
     #     return
     # evo_bot = Robot.MOBILE_ROBOT.EVOBOT
     # h1_robot = Robot.LEGGED_ROBOT.H1
-    # carter = Robot.MOBILE_ROBOT.NOVA_CARTER
-    # res = sim_world.add_robot(
-    #     name="evo_bot",
-    #     usd_path=evo_bot,
-    #     position=Position(1.0, 0.0, 0.0).to_numpy(),
-    #     orientation=Orientation.from_quaternion(
-    #         np.array([0.7071, 0.0, 0.0, 0.7071])
-    #     ).to_numpy(),  # 90 degrees around x-axis
-    #     phase_offset=0.0,
-    # )
-    # if not res:
-    #     print("Failed to add robot evo_bot")
-    #     return
+    carter = Robot.MOBILE_ROBOT.NOVA_CARTER
+    res = sim_world.add_robot(
+        name="carter_robot",
+        usd_path=carter,
+        position=Position(1.0, 0.0, 0.0).to_numpy(),
+        orientation=Orientation.from_quaternion(
+            np.array([0.7071, 0.0, 0.0, 0.7071])
+        ).to_numpy(),  # 90 degrees around x-axis
+        phase_offset=0.0,
+    )
+    if not res:
+        print("Failed to add robot carter_robot")
+        return
 
     # Initialize and run simulation
     sim_world.initialize_simulation()
