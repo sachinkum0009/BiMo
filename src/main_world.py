@@ -75,17 +75,19 @@ def main():
     # if not res:
     #     print("Failed to add robot franka")
     #     return
-    
+    h1_robot = Robot.LEGGED_ROBOT.H1
     carter = Robot.MOBILE_ROBOT.NOVA_CARTER
     res = sim_world.add_robot(
-        name="Nova_Carter_ROS",
-        usd_path=carter,
-        position=Position(1.5, 0.0, 0.0).to_numpy(),
-        orientation=Orientation.from_quaternion(np.array([0.7071, 0.0, 0.0, 0.7071])).to_numpy(),  # 90 degrees around x-axis
-        phase_offset=0.0
+        name="h1_robot",
+        usd_path=h1_robot,
+        position=Position(1.0, 0.0, 1.25).to_numpy(),
+        orientation=Orientation.from_quaternion(
+            np.array([0.7071, 0.0, 0.0, 0.7071])
+        ).to_numpy(),  # 90 degrees around x-axis
+        phase_offset=0.0,
     )
     if not res:
-        print("Failed to add robot carter")
+        print("Failed to add robot h1_robot")
         return
 
     # Initialize and run simulation
