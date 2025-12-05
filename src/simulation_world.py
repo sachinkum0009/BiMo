@@ -16,7 +16,7 @@ from camera_manager import CameraManager
 class SimulationWorld:
     """Main class to manage the simulation world and coordinate all components."""
     
-    def __init__(self):
+    def __init__(self, load_ground_plane: bool = True, world_usd_path: Optional[Path] = None):
         """
         Initialize the simulation world.
         
@@ -25,12 +25,13 @@ class SimulationWorld:
         self.robots: List[Robot] = []
         self.camera_manager: Optional[CameraManager] = None
         
-        self._setup_world()
+        self._setup_world(load_ground_plane)
     
-    def _setup_world(self):
+    def _setup_world(self, load_ground_plane: bool = True):
         """Set up the basic world environment."""
         # Add default ground plane
-        self.world.scene.add_default_ground_plane()  # type: ignore
+        if load_ground_plane:
+            self.world.scene.add_default_ground_plane()  # type: ignore
         
         
         

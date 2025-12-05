@@ -30,8 +30,15 @@ class MobileRobot:
     TURTLEBOT3 = Path(
         f"{ASSETS_ROOT}/Isaac/Samples/ROS2/Robots/turtlebot3_burger_ROS.usd"
     )
-    ROBOT2 = Path(f"{ASSETS_ROOT}/Isaac/Robots/MobileRobot2/mobile_robot2.usd")
-    ROBOT3 = Path(f"{ASSETS_ROOT}/Isaac/Robots/MobileRobot3/mobile_robot3.usd")
+    O3DYN = Path(
+        f"{OMNIVERSE_CONTENT_URL}/Assets/Isaac/5.0/Isaac/Robots/Fraunhofer/O3dyn/o3dyn.usd"
+    )
+    EVOBOT = Path(
+        f"{OMNIVERSE_CONTENT_URL}/Assets/Isaac/5.0/Isaac/Robots/Fraunhofer/Evobot/evobot.usd"
+    )
+    IWHUB = Path(
+        f"{OMNIVERSE_CONTENT_URL}/Assets/Isaac/5.0/Isaac/Robots/Idealworks/iwhub/iwhub.usd"
+    )
 
 
 class LeggedRobot:
