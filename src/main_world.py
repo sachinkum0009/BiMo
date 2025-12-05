@@ -30,28 +30,31 @@ enable_extension("isaacsim.ros2.bridge")
 from simulation_world import SimulationWorld
 from my_utils import Position, Orientation, Color
 from robots import Robot
+from environments import Environment
 
 
 def main():
     """Main function to set up and run the simulation."""
 
+    # world_usd_path = Path("/home/asus/backup/zzzzz/isaac/revel_hackathon/turtlebot3_ros.usd")
+    world_usd_path = Environment.INDOOR.HOSPITAL
     # Create simulation world
-    sim_world = SimulationWorld()
+    sim_world = SimulationWorld(load_ground_plane=False, world_usd_path=world_usd_path)
 
     # add cube
-    sim_world.add_cube(
-        name="cube1",
-        position=Position(2.0, 0.0, 0.5).to_numpy(),
-        size=np.array([0.5, 0.5, 0.5]),
-        color=Color.GREEN.as_array(),
-    )
+    # sim_world.add_cube(
+    #     name="cube1",
+    #     position=Position(2.0, 0.0, 0.5).to_numpy(),
+    #     size=np.array([0.5, 0.5, 0.5]),
+    #     color=Color.GREEN.as_array(),
+    # )
 
-    sim_world.add_cube(
-        name="cube2",
-        position=Position(0.0, 0.0, 0.25).to_numpy(),
-        size=np.array([0.5, 0.5, 0.5]),
-        color=Color.BLUE.as_array(),
-    )
+    # sim_world.add_cube(
+    #     name="cube2",
+    #     position=Position(0.0, 0.0, 0.25).to_numpy(),
+    #     size=np.array([0.5, 0.5, 0.5]),
+    #     color=Color.BLUE.as_array(),
+    # )
 
     # Add two robots with different positions and orientations
     # robot1 = sim_world.add_robot(
@@ -75,21 +78,21 @@ def main():
     # if not res:
     #     print("Failed to add robot franka")
     #     return
-    evo_bot = Robot.MOBILE_ROBOT.EVOBOT
-    h1_robot = Robot.LEGGED_ROBOT.H1
-    carter = Robot.MOBILE_ROBOT.NOVA_CARTER
-    res = sim_world.add_robot(
-        name="evo_bot",
-        usd_path=evo_bot,
-        position=Position(1.0, 0.0, 0.0).to_numpy(),
-        orientation=Orientation.from_quaternion(
-            np.array([0.7071, 0.0, 0.0, 0.7071])
-        ).to_numpy(),  # 90 degrees around x-axis
-        phase_offset=0.0,
-    )
-    if not res:
-        print("Failed to add robot evo_bot")
-        return
+    # evo_bot = Robot.MOBILE_ROBOT.EVOBOT
+    # h1_robot = Robot.LEGGED_ROBOT.H1
+    # carter = Robot.MOBILE_ROBOT.NOVA_CARTER
+    # res = sim_world.add_robot(
+    #     name="evo_bot",
+    #     usd_path=evo_bot,
+    #     position=Position(1.0, 0.0, 0.0).to_numpy(),
+    #     orientation=Orientation.from_quaternion(
+    #         np.array([0.7071, 0.0, 0.0, 0.7071])
+    #     ).to_numpy(),  # 90 degrees around x-axis
+    #     phase_offset=0.0,
+    # )
+    # if not res:
+    #     print("Failed to add robot evo_bot")
+    #     return
 
     # Initialize and run simulation
     sim_world.initialize_simulation()
